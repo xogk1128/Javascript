@@ -1,0 +1,98 @@
+body{
+    margin : 0;
+    font-family: 'Source Sans Pro';
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #263343;
+    padding : 8px 12px;
+}
+
+.logo {
+    font-size : 24px;
+    color : white;
+}
+
+.logo i {
+    color :#d49466;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+.menu li {
+    padding : 8px 12px;
+}
+
+.menu li:hover {
+    background-color: #d49466;
+    border-radius: 4px;
+}
+
+.icon {
+    list-style: none;
+    color : white;
+    display: flex;
+
+}
+
+.icon li {
+    padding : 8px 12px;
+}
+
+.menu_bar {
+    position: absolute;
+    right : 32px;
+    font-size: 24px;
+    color: #d49466;
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .bar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding : 8px 24px;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        
+    }
+
+    .menu li {
+        width: 100%;
+        text-align: center;
+        
+    }
+
+    .icon {
+        display: none;
+        justify-content: center;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .menu_bar {
+        display: block;
+    }
+
+    .menu.active,
+    .icon.active {
+        display: flex;
+    }
+}
