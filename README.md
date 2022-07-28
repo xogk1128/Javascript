@@ -1,2 +1,2 @@
-# javascript
-자바스크립트 연습
+# html css js
+기초 연습
