@@ -36,9 +36,16 @@ header > div > img {
 }
 
 article {
-    background-color: skyblue;
-    width: 100%;
+    background-color: rgb(36, 29, 29);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 585px;
+}
+
+iframe { 
+    width: 90%;
+    height: 90%;
 }
 
 .content {
@@ -63,5 +70,9 @@ article {
 .content_aside {
     background-color: blue;
     width: 40%;
+    margin-left: 12px;
+}
+
+.content_title > li {
     margin-left: 12px;
 }
