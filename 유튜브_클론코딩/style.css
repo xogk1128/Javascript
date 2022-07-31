@@ -7,6 +7,8 @@
     color: #000;
 }
 
+/* 헤더 파트 */
+
 header {
     display: flex;
     align-items: center;
@@ -14,10 +16,19 @@ header {
     height: 56px;
 }
 
-header > div > img {
-    height: 40px;
-    width: 90px;
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo > i {
+    color: red;
     padding-left: 12px;
+}
+
+.title {
+    color: #fff;
+    margin-left: 2px;
 }
 
 .icons {
@@ -35,8 +46,10 @@ header > div > img {
     color: #fff;
 }
 
+/* 비디오 파트 */
+
 article {
-    background-color: rgb(36, 29, 29);
+    background-color: rgb(29, 24, 24);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,31 +61,90 @@ iframe {
     height: 90%;
 }
 
-.content {
-    display: flex;
-    width: 100%;
-    background-color: red;
+/* 컨텐츠 전체적인 파트 */
+
+.metadata {
+    display: block;
+    align-items: flex-start;
+    /* background-color: rgb(29, 24, 24); */
+    background-color: skyblue;
 }
 
 .content_title {
-    background-color: rgb(36, 29, 29);
+    /* background-color: rgb(29, 24, 24); */
+    background-color: antiquewhite;
     width: 60%;
     padding-left: 12px;
 }
 
-.content_title > li {
+.content_title > div {
     margin-top: 10px;
     padding-bottom: 10px;
-    border-bottom: 1px solid gray;
     color: #fff;
 }
 
-.content_aside {
-    background-color: blue;
-    width: 40%;
-    margin-left: 12px;
+/* 해쉬태그 */
+
+.hashtags {
+    display: flex;
 }
 
-.content_title > li {
+.hashtags > li {
+    color: #fff;
+    font-size: 5px;
+    margin-left: 7px;
+    margin-bottom: 5px;
+}
+
+/* 타이틀과 버튼 */
+
+.titleAndBtn {
+    color: #fff;
+}
+
+.views {
+    /* border-bottom: 1px solid gray; */
+    color: #fff;
+    width: 100%;
+}
+
+/* 액션 파트 */
+.actions {
+    display: flex;
+}
+
+.actions {
+    margin-bottom: 5px;
+    border-bottom: 1px solid gray;
+}
+
+/* channel info */
+.channel {
+    display: flex;
+}
+
+.metadata1 {
+    display: flex;
+}
+
+.metadata > img {
+    border-radius: 5px;
+    width: 50px;
+}
+
+.info {
+    display: block;
+}
+
+
+
+/* 옆구리 부분 */
+.UpNext {
+    background-color: green;
+}
+
+.content_aside {
+    background-color: red;
+    width: 40%;
     margin-left: 12px;
 }

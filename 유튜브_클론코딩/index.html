@@ -5,31 +5,120 @@
     
     <script src="https://kit.fontawesome.com/cbd3ed1aba.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Youtube Mobile</title>
 </head>
 <body>
+    <!--- header -->
     <header>
         <div class="logo">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT1dfsuqrVteYlI3oMAUtDvIYecD3nYD3G_w&usqp=CAU">
+            <i class="fab fa-youtube"></i>
+            <span class="title">Youtube</span>
         </div>
         <div class="icons">
             <div class="search"><i class="fab fa-youtube"></i></div>
             <div class="menu"><i class="fas fa-bars"></i></div>
         </div>
     </header>
+
+    <!-- video -->
+
     <article>
-        <iframe src="https://www.youtube.com/embed/67stn7Pu7s4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/67stn7Pu7s4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </article>
-    <div class="content">
-        <ul class="content_title">
-            <li>
-                코딩 / 과제 할 때 집중 해서 듣기 좋은 음악🌃 | 3 hour playlist | beats to coding to | lofi, jazz, hiphop |</li>
-            <li>2</li>
-            <li>3</li>
-        </ul>
-        <div class="content_aside">
-            hi
+
+    <!-- video info -->
+    <div class="metadata">
+
+        <div class="content_title">
+
+            <!-- hashtag -->
+
+            <ul class="hashtags">
+                <li>#Clone Coding</li>
+                <li>#Youtube Making</li>
+                <li>#HTML_CSS_JS</li>
+            </ul>
+
+            <!-- title -->
+
+            <div class="titleAndBtn">
+                <span class="title">
+                    클론코딩 유튜브 사이트 따라 만들기(HTML+CSS 연습편, 웹 포트폴리오) | 프론트엔드 개발자 입문편: HTML, CSS, Javascript
+                </span>
+                <button class="moreBtn">
+                    <i class="fas fa-caret-down"></i>
+                </button>                
+            </div>
+
+            <!-- 조회수 -->
+
+            <div class="views">
+                <span class="views">1M views 1 months ago</span>
+            </div>
         </div>
+
+        <!-- actions 버튼 -->
+        <ul class="actions">
+            <li>
+                <button><i class="fas fa-thumbs-up"></i>
+                <span>1K</span></button>
+            </li>
+            <li>
+                <button><i class="fas fa-thumbs-down"></i>
+                <span>0</span></button>
+            </li>
+            <li>
+                <button><i class="fas fa-share"></i>
+                <span>Share</span></button>
+            </li>
+            <li>
+                <button><i class="fas fa-plus"></i>
+                <span>Save</span></button>
+            </li>
+            <li>
+                <button><i class="fab fa-font-awesome-flag"></i>
+                <span>Report</span></button>
+            </li>
+        </ul>
+
+        <!-- channel info -->
+
+        <div class="channel">
+
+            <div class="metadata1">
+                <img src="https://yt3.ggpht.com/ytc/AMLnZu9JVtkGkNHY-yRPfmdqzP8DlYXPLId1Ql0jX2gtrg=s88-c-k-c0x00ffffff-no-rj">
+
+                <div class="info">
+                    <span class="name">
+                        드림코딩 by 엘리
+                    </span>
+                    <span class="subscribers">
+                        1M subscribers
+                    </span>
+                </div>
+            </div>
+
+            <button class="subscribe">SUBSCRIBE</button>
+        </div>
+    </div>
+
+
+    <div class="UpNext">
+        <ul>
+            <li class="item">
+                <img src="" alt="">
+                <div class="info">
+                    <span class="title">
+                        코딩 / 과제 할 때 집중 해서 듣기 좋은 음악🌃 | 3 hour playlist | beats to coding to | lofi, jazz, hiphop |
+                    </span>
+                    <span class="name">Lofi 코딩</span>
+                    <span class="views">3M views</span>
+                </div>
+                <button class="moreBtn"><i class="fas fa-ellipsis-v"></i></button>
+            </li>
+            <li class="item"></li>
+            <li class="item"></li>
+        </ul>
     </div>
 </body>
 </html>
