@@ -1,49 +1,59 @@
+:root {
+    /* Color */
+    --white-color: #fff;
+    --black-color: #140a00;
+    --blue-color:#045fd4;
+    --red-color: #ff0000;
+    --grey-dark-color: #909090;
+    --grey-light-color: #e0e0e0;
+
+    /* Size */
+    --padding : 12px;
+    --avatar-size : 36px;
+
+    /* font Size */
+    --font-large : 18px;
+    --font-medium : 14px;
+    --font-small : 12px;
+    --font-micro : 10px;
+}
+
 *{
     text-decoration: none;
     list-style: none;
     border-collapse: collapse;
     margin: 0;
     padding: 0;
-    color: #000;
+    box-sizing: border-box;
+    /* color: #000; */
 }
 
 /* 헤더 파트 */
 
 header {
     display: flex;
-    align-items: center;
-    background-color: rgb(36, 29, 29);
-    height: 56px;
+    justify-content: space-between;
+    background-color: var(--black-color);
+    color: var(--white-color);
+    padding: var(--padding);
 }
 
-.logo {
-    display: flex;
-    align-items: center;
+header .logo {
+    font-size: var(--font-large);
 }
 
-.logo > i {
-    color: red;
-    padding-left: 12px;
+header .logo  i {
+    color: var(--red-color);
+    /* padding-left: 12px; */
+}
+
+header .icons .fa-youtube {
+    margin-right: var(--padding);
 }
 
 .title {
-    color: #fff;
-    margin-left: 2px;
-}
-
-.icons {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-}
-
-.icons > .menu {
-    padding-right: 12px;
-    padding-left: 5px;
-}
-
-.icons i {
-    color: #fff;
+    /* color: #fff; */
+    /* margin-left: 2px; */
 }
 
 /* 비디오 파트 */
@@ -147,4 +157,9 @@ iframe {
     background-color: red;
     width: 40%;
     margin-left: 12px;
+}
+
+.item img {
+    width: 60px;
+    height: 30px;
 }
