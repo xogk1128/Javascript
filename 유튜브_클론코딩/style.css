@@ -141,18 +141,44 @@ header .icons .fa-youtube {
 /* channel info */
 .channel {
     display: flex;
+    justify-content: space-between;
 }
 
-.metadata1 {
+.channel .metadata {
     display: flex;
+    align-items: center;
 }
 
-.metadata > img {
-    border-radius: 5px;
-    width: 50px;
+.channel .metadata .info {
+    display: flex;
+    flex-direction: column;
 }
 
+.channel .metadata .info .name {
+    font-size: var(--font-medium);
+}
 
+.channel .metadata .info .subscribers {
+    font-size: var(--font-small);
+    color: var(--grey-dark-color);
+}
+
+.channel .metadata img {
+    border-radius: 50%;
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+}
+
+.channel .subscribe {
+    text-transform: uppercase;
+    color: var(--red-color);
+    font-size: var(--font-medium);
+}
+
+.channel {
+    border-top: 1px solid var(--grey-light-color);
+    border-bottom: 1px solid var(--grey-light-color);
+}
 
 /* 옆구리 부분 */
 .UpNext {
