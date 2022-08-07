@@ -75,7 +75,7 @@ header .icons .fa-youtube {
 
 /* 해쉬태그 */
 
-.info {
+body > .info {
     padding: var(--padding);
 }
 
@@ -115,33 +115,36 @@ header .icons .fa-youtube {
  }
 
 /* action 파트 */
-.actions {
+.info .actions {
     display: flex;
     justify-content: space-around;
     margin: var(--padding) 0;
 }
 
-.actions button {
+.info .actions button {
     display: flex;
     flex-direction: column;
     font-size: var(--font-small);
     color: var(--grey-dark-color);
 }
 
-.actions button i {
+.info .actions button i {
     margin: 0 auto;
     margin-bottom: calc(var(--padding)/2);
     font-size: 16px;
 }
 
-.actions button i.active {
+.info .actions button i.active {
     color: var(--blue-color);
 }
 
 /* channel info */
+
 .channel {
     display: flex;
     justify-content: space-between;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .channel .metadata {
@@ -165,6 +168,7 @@ header .icons .fa-youtube {
 
 .channel .metadata img {
     border-radius: 50%;
+    margin-right: 3px;
     width: var(--avatar-size);
     height: var(--avatar-size);
 }
@@ -175,23 +179,56 @@ header .icons .fa-youtube {
     font-size: var(--font-medium);
 }
 
-.channel {
+.info .channel {
     border-top: 1px solid var(--grey-light-color);
     border-bottom: 1px solid var(--grey-light-color);
 }
 
-/* 옆구리 부분 */
+/* upNext 파트 부분 */
 .UpNext {
-    background-color: green;
+    padding: 0 var(--padding);
 }
 
-.content_aside {
-    background-color: red;
-    width: 40%;
-    margin-left: 12px;
+.UpNext > .title {
+    font-size: var(--font-medium);
+    color: var(--grey-dark-color);
+    margin-bottom: calc(var(--padding)/2);
 }
 
-.item img {
-    width: 60px;
-    height: 30px;
+.UpNext .item {
+    display: flex;
+    align-items: flex-start;
+    margin-top: var(--padding);
+}
+
+.UpNext .item .img{
+    flex: 1 1 35%;
+    margin-right: var(--padding);
+}
+
+.UpNext .item .img img {
+    width: 100%;
+}
+
+.UpNext .item .info {
+    flex: 1 1 60%;
+}
+
+.UpNext .item .moreBtn{
+    flex: 1 1 5%;
+}
+
+.UpNext .item .info {
+    display: flex;
+    flex-direction: column;
+}
+
+.UpNext .item .info .title {
+    font-size: var(--font-small);
+}
+
+.UpNext .item .info .name,
+.UpNext .item .info .views {
+    font-size: var(--font-micro);
+    color: var(--grey-dark-color);
 }
