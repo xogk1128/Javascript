@@ -75,7 +75,7 @@ header .icons .fa-youtube {
 
 /* 해쉬태그 */
 
-body > .info {
+.infoAndUpNext .info {
     padding: var(--padding);
 }
 
@@ -95,17 +95,24 @@ body > .info {
     display: flex;
 }
 
-.info .metadata .titleAndBtn .title{
+.info .metadata .titleAndBtn .title {
     font-size: var(--font-medium);
+    margin-right: var(--padding);
+}
+
+.info .metadata .titleAndBtn .title.clamp {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
-    margin-right: var(--padding);
 }
-
 .info .metadata .titleAndBtn .moreBtn {
     height: 100%;
+    transition: transform 300ms ease-in-out;
+}
+
+.info .metadata .titleAndBtn .moreBtn.clicked {
+    transform: rotate(180deg);
 }
 
  /* views 파트 */
@@ -143,8 +150,6 @@ body > .info {
 .channel {
     display: flex;
     justify-content: space-between;
-    padding-top: 5px;
-    padding-bottom: 5px;
 }
 
 .channel .metadata {
@@ -231,4 +236,16 @@ body > .info {
 .UpNext .item .info .views {
     font-size: var(--font-micro);
     color: var(--grey-dark-color);
+}
+
+.infoAndUpNext {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 780px) {
+    .infoAndUpNext {
+        flex-direction: row;
+        margin: var(--padding) 0;
+    }
 }
