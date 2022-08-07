@@ -32,6 +32,7 @@ button:focus {
     border: none;
     cursor: pointer;
     outline: none;
+    background: none;
 }
 
 /* 헤더 파트 */
@@ -113,38 +114,28 @@ header .icons .fa-youtube {
     color: var(--grey-dark-color);
  }
 
-/* 컨텐츠 전체적인 파트 */
-
-.info {
-    display: block;
-    align-items: flex-start;
-    /* background-color: rgb(29, 24, 24); */
-    background-color: skyblue;
-}
-
-.metadata {
-    /* background-color: rgb(29, 24, 24); */
-    background-color: var(--black-color);
-    width: 60%;
-    padding-left: 12px;
-}
-
-.metadata > div {
-    margin-top: 10px;
-    padding-bottom: 10px;
-    color: #fff;
-}
-
-
-
-/* 액션 파트 */
+/* action 파트 */
 .actions {
     display: flex;
+    justify-content: space-around;
+    margin: var(--padding) 0;
 }
 
-.actions {
-    margin-bottom: 5px;
-    border-bottom: 1px solid gray;
+.actions button {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-small);
+    color: var(--grey-dark-color);
+}
+
+.actions button i {
+    margin: 0 auto;
+    margin-bottom: calc(var(--padding)/2);
+    font-size: 16px;
+}
+
+.actions button i.active {
+    color: var(--blue-color);
 }
 
 /* channel info */
@@ -159,10 +150,6 @@ header .icons .fa-youtube {
 .metadata > img {
     border-radius: 5px;
     width: 50px;
-}
-
-.info {
-    display: block;
 }
 
 
