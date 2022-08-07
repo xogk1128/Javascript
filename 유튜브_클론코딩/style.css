@@ -27,6 +27,13 @@
     box-sizing: border-box;
 }
 
+button,
+button:focus {
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
 /* 헤더 파트 */
 
 header {
@@ -71,15 +78,40 @@ header .icons .fa-youtube {
     padding: var(--padding);
 }
 
-.hashtags {
+.info .metadata .hashtags {
     display: flex;
     color: var(--blue-color);
     font-size: var(--font-small);
 }
 
-.hashtags > li {
+.info .metadata .hashtags li {
     margin-right: var(--padding);
 }
+
+/* titleAndBtn 파트 */
+
+.info .metadata .titleAndBtn {
+    display: flex;
+}
+
+.info .metadata .titleAndBtn .title{
+    font-size: var(--font-medium);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    margin-right: var(--padding);
+}
+
+.info .metadata .titleAndBtn .moreBtn {
+    height: 100%;
+}
+
+ /* views 파트 */
+ .views {
+    font-size: var(--font-small);
+    color: var(--grey-dark-color);
+ }
 
 /* 컨텐츠 전체적인 파트 */
 
@@ -92,7 +124,7 @@ header .icons .fa-youtube {
 
 .metadata {
     /* background-color: rgb(29, 24, 24); */
-    background-color: antiquewhite;
+    background-color: var(--black-color);
     width: 60%;
     padding-left: 12px;
 }
@@ -104,17 +136,6 @@ header .icons .fa-youtube {
 }
 
 
-/* 타이틀과 버튼 */
-
-.titleAndBtn {
-    color: #fff;
-}
-
-.views {
-    /* border-bottom: 1px solid gray; */
-    color: #fff;
-    width: 100%;
-}
 
 /* 액션 파트 */
 .actions {
