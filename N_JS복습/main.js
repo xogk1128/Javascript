@@ -3,8 +3,9 @@ var url = require('url');
 var fs = require('fs');
 var qs = require('querystring');
 
-function templateHTML(title, list, control, body){
-    return `
+var template = {
+    html : function(title, list, control, body){
+        return `
         <!doctype html>
             <html>
             <head>
@@ -21,16 +22,16 @@ function templateHTML(title, list, control, body){
             </body>
         </html>
     `
-}
-
-function templateList(filelist){
-    var i=0;
-    var list ='';
-    while(filelist.length > i){
-        list += `<li><a href="/?id=${filelist[i]}">${filelist[i]}</a></li>`;
-        i++;
+    },
+    list : function(filelist){
+        var i=0;
+        var list ='';
+        while(filelist.length > i){
+            list += `<li><a href="/?id=${filelist[i]}">${filelist[i]}</a></li>`;
+            i++;
+        }
+        return list;
     }
-    return list;
 }
 
 var app = http.createServer(function(request,response){
@@ -44,18 +45,18 @@ var app = http.createServer(function(request,response){
             fs.readdir('./data','utf-8',function(err, filelist){
                 var title = 'Welcome';
                 var description = 'Hello NodeJS...';
-                var list = templateList(filelist);
-                var template = templateHTML(title, list, '<a href=/create>create</a>',`<h2>${title}</h2>${description}`);
+                var list = template.list(filelist);
+                var html = template.html(title, list, '<a href=/create>create</a>',`<h2>${title}</h2>${description}`);
 
                 response.writeHead(200);
-                response.end(template);
+                response.end(html);
             });
         } else {
             fs.readdir(`./data`,'utf-8',function(err2, filelist){
                 fs.readFile(`data/${queryData.id}`,'utf-8',function(err, description){
                     var title = queryData.id;
-                    var list = templateList(filelist);
-                    var template = templateHTML(title, list, `<a href=/create>create</a> <a href="/update?id=${title}">update</a>
+                    var list = template.list(filelist);
+                    var html = template.html(title, list, `<a href=/create>create</a> <a href="/update?id=${title}">update</a>
                     <form action="/delete_process?id=${title}" method="post">
                         <input type="hidden" name="title" value="${title}">
                         <input type="submit" value="delete">
@@ -63,15 +64,15 @@ var app = http.createServer(function(request,response){
                     `,`<h2>${title}</h2>${description}`);
 
                     response.writeHead(200);
-                    response.end(template);
+                    response.end(html);
                 });
             });
         }
     } else if(pathname === '/create'){
         fs.readdir('./data','utf-8',function(err, filelist){
             var title = 'WEB - create';
-            var list = templateList(filelist);
-            var template = templateHTML(title, list, '',`
+            var list = template.list(filelist);
+            var html = template.html(title, list, '',`
                 <form action="/create_process" method="post">
                     <p><input type="text" name="title" placeholder="title"></p>
                     <p><textarea placeholder="description" name="description"></textarea></p>
@@ -80,7 +81,7 @@ var app = http.createServer(function(request,response){
             `);
 
             response.writeHead(200);
-            response.end(template);
+            response.end(html);
         });
     } else if(pathname === '/create_process'){
         var body = '';
@@ -102,8 +103,8 @@ var app = http.createServer(function(request,response){
         fs.readdir(`./data`,'utf-8',function(err2, filelist){
             fs.readFile(`data/${queryData.id}`,'utf-8',function(err, description){
                 var title = queryData.id;
-                var list = templateList(filelist);
-                var template = templateHTML(title, list, '<a href=/create>create</a><a href="/update">update</a>', `
+                var list = template.list(filelist);
+                var html = template.html(title, list, '<a href=/create>create</a><a href="/update">update</a>', `
                 <form action="/update_process" method="post">
                     <p><input type="hidden" name="id" value="${title}"></p>
                     <p><input type="text" name="title" value="${title}" placeholder="title"></p>
@@ -113,7 +114,7 @@ var app = http.createServer(function(request,response){
             `);
 
                 response.writeHead(200);
-                response.end(template);
+                response.end(html);
             });
         });
     } else if(pathname === '/update_process'){
@@ -142,10 +143,10 @@ var app = http.createServer(function(request,response){
         request.on('end', function(){
             var post = qs.parse(body);
             var title = post.title;
-
-            response.writeHead(302,{Location:`/`});
-            response.end('Success');
-            
+            fs.unlink(`data/${title}`,function(err){
+                response.writeHead(302,{Location:`/`});
+                response.end('Success');
+            });
         });
     } else {
         response.writeHead(404);
