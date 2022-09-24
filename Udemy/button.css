@@ -1,0 +1,29 @@
+/* 버튼 가운데 배치하기 */
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #151b29;
+}
+
+button {
+    background: none;
+    padding: 1em 2em;
+    color: #ffa260;
+    border: 2px solid;
+    font-size: 1em;
+    /* all을 사용하는 것은 좋지 않음 */
+    /* transition : 변하게 할 속성 / duration */
+    transition: color 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+button:hover {
+    border-color : #f1ff5c;
+    color: white;
+/* box-shadow : X / Y / blur-radius / spread-radius / color */
+    box-shadow: 0 0.5em 0.5em -0.4em #f1ff5c;
+    transform: translateY(-0.25em);
+    cursor: pointer;
+}
