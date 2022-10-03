@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Chap07-Summary</title>
+</head>
+<body>
+    <h3>Array, Date, String, Math 이용한 로또</h3>
+    <hr>
+
+<script>
+    function Obj(name, money){
+        this.name = name;
+        this.money = money;
+        this.day = new Date();
+        this.weeks = new Array("일요일","월요일","화요일","수요일","목요일","금요일","토요일");
+        this.line = new Array("A","B","C","D","E","F","G","H","I","J");
+        this.calc_day = {
+            year : this.day.getFullYear(),
+            month : this.day.getMonth() + 1,
+            date : this.day.getDate(),
+            week : this.weeks[this.day.getDay()],
+            hour : this.day.getHours(),
+            min : this.day.getMinutes(),
+            sec : this.day.getSeconds(),
+        }
+    }
+
+    function start(person){
+        var count = parseInt(prompt("로또 구매 개수를 입력하시오."));
+        var price = count * 1000;
+        if(person.money < price){
+            alert("금액이 부족합니다!");
+        }
+        else if(count > 10){
+            alert("최대 구매 개수를 넘겼습니다!");
+        }
+        else if(person.money >= price){
+            person.money -= price;
+            person.day = new Date();
+            document.write("<h2>" + person.name + "님의 로또 구매 개수 : " + count + "개</h2>");
+            document.write("<h4>" + person.name + "님의 보유중인 금액 : " + person.money + "원</h4>");
+            document.write("<h4>구매 일자 : " + person.calc_day.month + "월 / " + person.calc_day.date + "일 / " + person.calc_day.week + " / " + person.calc_day.hour + "시 " + person.calc_day.min + "분 " + person.calc_day.sec + "초</h4>");
+            
+            document.write("<h4>======== 로또 ========</h4>");
+            for(let i = 0; i<count; i++){
+                document.write(person.line[i] + " 자동 ");
+                lotto();
+                document.write("<br>");
+            }
+            
+            document.write('<br><form action="./1971341_김태하.html"><button>뒤로 가기</button></form>');
+        }
+    }
+
+    function lotto(){
+        let numbers = new Array();
+        for(let i=0; i<7; i++){
+            numbers[i] = (Math.floor(Math.random()*45)+1);
+            for(let k=0; k<i;k++){
+                if(numbers[i] == numbers[k]){
+                    numbers[i] = (Math.floor(Math.random()*45)+1);
+                }
+            }
+        }
+        for(let i=0; i<7;i++){
+            document.write("<strong>" + numbers[i] + "</strong> ");
+        }
+    }
+    // 이름 입력 받고 객체 생성
+    let name = new String(prompt("이름을 입력하세요."));
+    let price = parseInt(prompt("보유중인 돈을 입력하세요. (천원 단위)"));
+    const person = new Obj(name, price);
+    document.write("<h2>"+ person.name +"님 환영합니다!</h2>");
+    document.write("<h4>방문 일자 : "+ person.calc_day.year + "년 / " + person.calc_day.month + "월 / " + person.calc_day.date + "일 / " + person.calc_day.week+"</h4>");
+    document.write("<h4>현재 보유중인 금액 : "+ person.money +"원</h4>");
+    document.write("로또 하나당 1000원, 최대 구매 개수는 10개 입니다!<br><br>");
+    document.write('<button onclick="start(person)">로또 구매</button>');
+</script>
+</body>
+</html>
