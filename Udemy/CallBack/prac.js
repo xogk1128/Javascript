@@ -33,10 +33,24 @@ const delayedColorChange = (color, delay) => {
 //     .then(()=> delayedColorChange('blue',1000))
 //     .then(()=> delayedColorChange('violet',1000))
 
-async function rainbow(){
-    await delayedColorChange('green',1000);
-    await delayedColorChange('blue',1000);
-    await delayedColorChange('violet',1000);
+// async function rainbow(){
+//     await delayedColorChange('green',1000);
+//     await delayedColorChange('blue',1000);
+//     await delayedColorChange('violet',1000);
+// }
+
+// rainbow();
+
+async function makeTwoRequests(){
+    try{
+        let data1 = await fakeRequest('/page1');
+        console.log(data1);
+        let data2 = await fakeRequest('/page2');
+        console.log(data2);
+    } catch(e){
+        console.log('CAUGTH AN ERROR!');
+        console.log('ERROR is :', e);
+    }
 }
 
-rainbow();
+makeTwoRequests();
