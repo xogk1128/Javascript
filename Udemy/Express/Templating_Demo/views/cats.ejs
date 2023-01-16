@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random</title>
+    <title>All Cats!</title>
 </head>
 <body>
-    <h1>Your random number is <%= num  %></h1>
-    <% if(num % 2 === 0){ %>
-        <h2>That is an even number!</h2>
-    <% }else{ %>
-        <h2>That is an odd number!</h2>
+    <h1>All The Cats</h1>
+    <ul>
+    <% for(let cat of cats){ %>
+        <li><%= cat %></li>
     <%}%>
+    </ul>
 </body>
 </html>
