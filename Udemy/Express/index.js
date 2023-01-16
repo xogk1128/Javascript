@@ -25,8 +25,8 @@ app.get('/r/:subReddit/:postId', (req, res) => {
 });
 
 app.get('/search', (req, res) => {
-    const {q} = req.query;
-    res.send(`<h1>Search results for : ${q}</h1>`);
+    const {q, hi} = req.query;
+    res.send(`<h1>Search results for : ${q} & ${hi}</h1>`);
 });
 
 app.get('*', (req, res) => {
