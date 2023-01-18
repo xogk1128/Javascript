@@ -67,6 +67,12 @@ app.get('/comments/:id/edit', (req,res)=>{
     res.render('comments/edit', {comment});
 });
 
+app.delete('/comments/:id', (req,res)=>{
+    const {id} = req.params;
+    comments = comments.filter((c)=> c.id !==id);
+    res.redirect('/comments');
+});
+
 app.get('/tacos', (req, res)=>{
     res.send("GET /tacos response");
 });
@@ -85,3 +91,14 @@ app.listen(3000, ()=>{
 // GET .comments/:id - Get one comment (using ID)
 // PATCH /commens/:id - Update one comment
 // DELETE /comments/:id - Destroy one comment
+
+// DB
+// db.collection.insert()
+// db.collection.insertOne()
+// db.collection.insertMany()
+
+// db.collection.find()
+
+// db.collection.updateOne()
+// db.collection.updateMany()
+// db.collection.replaceOne()
