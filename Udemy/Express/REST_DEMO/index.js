@@ -102,3 +102,7 @@ app.listen(3000, ()=>{
 // db.collection.updateOne()
 // db.collection.updateMany()
 // db.collection.replaceOne()
+
+// db.collection.deleteMany()
+// db.collection.deleteOne()
+// 전체 삭제 : db.collection.deleteMany({})
