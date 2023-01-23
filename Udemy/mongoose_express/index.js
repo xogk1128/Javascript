@@ -14,11 +14,13 @@ mongoose.connect('mongodb://127.0.0.1:27017/farmStand')
         console.log(err);
     });
 
+// views 디렉토리 설정
 app.set('views',path.join(__dirname, 'views'));
 app.set('view engine','ejs');
 
-app.get('/dog', (req, res)=>{
-    res.send('WOOF!');
+app.get('/products', async (req, res)=>{
+    const products = await Product.find({});
+    res.render('products/index', {products});
 });
 
 app.listen(3000, ()=>{
