@@ -28,8 +28,14 @@ const categories = ['fruit', 'vegetable', 'dairy'];
 
 // index 라우트 : 모든 상품 이름 보여주기
 app.get('/products', async (req, res)=>{
-    const products = await Product.find({});
-    res.render('products/index', {products});
+    const {category} = req.query;
+    if(category){
+        const products = await Product.find({category});
+        res.render('products/index', {products, category});
+    } else {
+        const products = await Product.find({});
+        res.render('products/index', {products, category : 'All'});
+    }
 });
 
 // new 라우트 : 상품 추가하기
@@ -66,6 +72,8 @@ app.delete('/products/:id', async (req, res)=>{
     const deleteProduct = await Product.findByIdAndDelete(id);
     res.redirect(`/products`);
 });
+
+
 
 app.listen(3000, ()=>{
     console.log('APP IS LISTENING ON PORT 3000!');
