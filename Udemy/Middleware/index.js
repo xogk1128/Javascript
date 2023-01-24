@@ -18,6 +18,14 @@ app.use('/dogs', (req,res,next)=>{
     next();
 })
 
+app.use((req,res,next)=>{
+    const { password } = req.query;
+    if(password === 'chickennugget'){
+        next();
+    }
+    res.send('SORRY YOU NEED A PASSWORD!!');
+})
+
 // app.use((req, res, next)=>{
 //     console.log('THIS IS MY FIRST MIDDLEWARE!!!');
 //     next();
@@ -37,6 +45,10 @@ app.get('/dogs', (req,res)=>{
     console.log(`Request Time : ${req.requestTime}`);
     res.send('WOOF WOOF!');
 });
+
+app.get('/secret', (req,res)=>{
+    res.send('MY SECRET IS : Somtimes i wear headphones in public so i dont to talk anyone');
+})
 
 app.use((req,res)=>{
     res.status(404).res.send('NOT FOUND!');
