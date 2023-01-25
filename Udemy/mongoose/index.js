@@ -29,5 +29,5 @@ Movie.insertMany([
         console.log(data);
     })
     
-const amadeus = new Movie({title:'Amadeus', year:1986,score:9.2,rating:"R"});
+// const amadeus = new Movie({title:'Amadeus', year:1986,score:9.2,rating:"R"});
 
