@@ -88,6 +88,7 @@ const handleValidationErr = err => {
     return new AppError(`Validation Failed... ${err.message}`, 400)
 }
 
+//특정 경로 에러 검출
 app.use((err, req, res, next)=>{
     console.log(err.name);
     if(err.name === 'ValidationError') err = handleValidationErr(err);
