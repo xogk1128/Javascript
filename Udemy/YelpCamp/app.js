@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
+const session = require('express-session');
 //const { campgroundSchema, reviewSchema} = require('./schemas')
 //const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./Utils/ExpressError');
@@ -33,6 +34,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({extended:true}));
 // http status
 app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 // 라우트 설정
 app.use('/campgrounds', campgrounds);
 app.use('/campgrounds/:id/reviews', reviews);
