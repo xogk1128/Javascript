@@ -3,6 +3,7 @@ const app = express();
 const User = require('./models/user');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const session = require('express-session');
 
 mongoose.set('strictQuery',true)
 mongoose.connect('mongodb://127.0.0.1:27017/authDemo', {
@@ -22,6 +23,9 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 // req.body 파싱
 app.use(express.urlencoded({extended : true }));
+// 세션 사용
+app.use(session({ secret: 'notagoodsecret'}));
+
 
 app.get('/', (req, res)=>{
     res.send('THIS IS THE HOME PAGE');
@@ -39,6 +43,7 @@ app.post('/register', async (req, res)=>{
         password : hash
     });
     await user.save();
+    req.session.user_id = user._id;
     res.redirect('/');
 })
 
@@ -51,9 +56,10 @@ app.post('/login', async (req, res) => {
     const user = await User.findOne({ username });
     const ValidPassword = await bcrypt.compare(password, user.password);
     if(ValidPassword){
-        res.send('login');
+        req.session.user_id = user._id;
+        res.redirect('/secret');
     } else {
-        res.send('fail');
+        res.redirect('/login');
     }
 })
 
