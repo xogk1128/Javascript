@@ -4,17 +4,17 @@ const User = require('./models/user');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+mongoose.set('strictQuery',true)
 mongoose.connect('mongodb://127.0.0.1:27017/authDemo', {
     useNewUrlParser : true,
     useUnifiedTopology : true
 })
-    .then(()=>{
-        console.log("CONNECTION OPEN!!");
-    })
-    .catch((err)=>{
-        console.log("OH NO ERROR!!!!");
-        console.log(err);
-    });
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", ()=>{
+    console.log("Databasee connected");
+});
 
 // ejs 사용
 app.set('view engine', 'ejs');
@@ -40,6 +40,21 @@ app.post('/register', async (req, res)=>{
     });
     await user.save();
     res.redirect('/');
+})
+
+app.get('/login', (req, res) => {
+    res.render('login');
+})
+
+app.post('/login', async (req, res) => {
+    const { username , password } = req.body;
+    const user = await User.findOne({ username });
+    const ValidPassword = await bcrypt.compare(password, user.password);
+    if(ValidPassword){
+        res.send('login');
+    } else {
+        res.send('fail');
+    }
 })
 
 app.get('/secret', (req, res)=>{
