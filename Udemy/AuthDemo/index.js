@@ -25,7 +25,13 @@ app.set('views', 'views');
 app.use(express.urlencoded({extended : true }));
 // 세션 사용
 app.use(session({ secret: 'notagoodsecret'}));
-
+// 로그인 미들웨어
+const requireLogin = (req, res, next) => {
+    if(!req.session.user_id) {
+        return res.redirect('/login');
+    }
+    next();
+}
 
 app.get('/', (req, res)=>{
     res.send('THIS IS THE HOME PAGE');
@@ -63,9 +69,18 @@ app.post('/login', async (req, res) => {
     }
 })
 
-app.get('/secret', (req, res)=>{
-    res.send('THIS IS SECRET!');
+app.post('/logout', (req, res)=>{
+    req.session.user_id = null;
+    res.redirect('/login');
 })
+
+app.get('/secret', requireLogin, (req, res)=>{
+    res.render('secret');
+})
+
+app.get('/topsecret', requireLogin, (req, res)=>{
+    res.send('Top secret');
+});
 
 app.listen(3000, ()=>{
     console.log('SERVING YOUR APP!');
