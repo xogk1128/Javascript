@@ -8,6 +8,8 @@ const flash = require('connect-flash');
 //const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./Utils/ExpressError');
 const methodOverride = require('method-override');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
 
 
 const campgrounds = require('./routes/campgrounds');
