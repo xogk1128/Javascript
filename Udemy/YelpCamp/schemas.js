@@ -16,3 +16,9 @@ module.exports.reviewSchema = Joi.object({
         body : Joi.string().required()
     }).required()
 })
+
+module.exports.userSchema = Joi.object({
+    review : Joi.object({
+        email : Joi.string().required()
+    }).required()
+})
