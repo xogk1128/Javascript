@@ -4,9 +4,7 @@ const passport = require('passport');
 
 const User = require('../models/user');
 
-const ExpressError = require('../Utils/ExpressError');
 const catchAsync = require('../Utils/catchAsync');
-const { userSchema } = require('../schemas')
 
 router.get('/register', (req, res)=>{
     res.render('users/register');
@@ -40,9 +38,11 @@ router.post('/login', passport.authenticate('local', { failureFlash : true, fail
 });
 
 router.get('/logout', (req, res)=>{
-    req.logout();
-    req.flash('success', 'Goodbye!');
-    res.redirect('/campgrounds');
+    req.logout((err) => {
+        if (err) next(err);
+        req.flash("success", "Goodbye 😊");
+        res.redirect("/campgrounds");
+    });
 });
 
 module.exports = router;
