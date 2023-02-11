@@ -8,7 +8,7 @@ router.route('/')
     .get(catchAsync(campgrounds.index))
     .post(validateCampground, catchAsync(campgrounds.createCampground));
 
-    router.get('/new', isLoggedIn , campgrounds.renderNewForm);
+router.get('/new', isLoggedIn , campgrounds.renderNewForm);
 
 router.route('/:id')
     .get(catchAsync(campgrounds.showCampground))
