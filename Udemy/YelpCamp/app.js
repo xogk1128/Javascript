@@ -18,7 +18,7 @@ const User = require('./models/user');
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
-
+mongoose.set("strictQuery", false);
 mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
     useNewUrlParser : true,
     useUnifiedTopology : true
