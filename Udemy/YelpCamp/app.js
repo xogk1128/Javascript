@@ -15,6 +15,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 
+const mongoSanitize = require('express-mongo-sanitize');
+
+
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
@@ -42,6 +45,8 @@ app.use(express.urlencoded({extended:true}));
 // http status
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(mongoSanitize());
 
 const sessionConfig = {
     secret : 'thisshouldbeabettersecret!',
