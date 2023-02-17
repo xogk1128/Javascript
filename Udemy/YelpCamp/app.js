@@ -1,7 +1,6 @@
 if(process.env.NODE_ENV !== "production"){
     require('dotenv').config();
 }
-
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -21,8 +20,14 @@ const mongoSanitize = require('express-mongo-sanitize');
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
+const MongoDBStore = require('connect-mongo');
+
+
+//const db_url = process.env.DB_URL;
+const db_url = 'mongodb://127.0.0.1:27017/yelp-camp';
 mongoose.set("strictQuery", false);
-mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
+
+mongoose.connect(db_url, {
     useNewUrlParser : true,
     useUnifiedTopology : true
 })
@@ -49,6 +54,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize({replaceWith: '_'}));
 
 const sessionConfig = {
+    store :  MongoDBStore.create({ 
+        mongoUrl: db_url,
+        secret : 'thisshouldbeabettersecret!',
+        touchAfter : 24 * 60 * 60
+    }),
     name : 'session',
     secret : 'thisshouldbeabettersecret!',
     resave : false,
@@ -63,55 +73,7 @@ const sessionConfig = {
 
 app.use(session(sessionConfig));
 app.use(flash());
-// app.use(helmet({
-//     contentSecurityPolicy: false,
-//   }));
 
-// const scriptSrcUrls = [
-//     "https://stackpath.bootstrapcdn.com/",
-//     "https://api.tiles.mapbox.com/",
-//     "https://api.tiles.mapbox.com/",
-//     "https://api.mapbox.com/",
-//     "https://kit.fontawesome.com/",
-//     "https://cdnjs.cloudflare.com/",
-//     "https://cdn.jsdelivr.net",
-// ];
-// const styleSrcUrls = [
-//     "https://kit-free.fontawesome.com/",
-//     "https://stackpath.bootstrapcdn.com/",
-//     "https://api.mapbox.com/",
-//     "https://api.tiles.mapbox.com/",
-//     "https://fonts.googleapis.com/",
-//     "https://use.fontawesome.com/",
-//     "https://cdn.jsdelivr.net",
-// ];
-// const connectSrcUrls = [
-//     "https://api.mapbox.com/",
-//     "https://a.tiles.mapbox.com/",
-//     "https://b.tiles.mapbox.com/",
-//     "https://events.mapbox.com/",
-// ];
-// const fontSrcUrls = [];
-// app.use(
-//     helmet.contentSecurityPolicy({
-//         directives: {
-//             defaultSrc: [],
-//             connectSrc: ["'self'", ...connectSrcUrls],
-//             scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
-//             styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
-//             workerSrc: ["'self'", "blob:"],
-//             objectSrc: [],
-//             imgSrc: [
-//                 "'self'",
-//                 "blob:",
-//                 "data:",
-//                 "https://res.cloudinary.com/kimcloud/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT! 
-//                 "https://images.unsplash.com/",
-//             ],
-//             fontSrc: ["'self'", ...fontSrcUrls],
-//         },
-//     })
-// );
 
 app.use(passport.initialize());
 app.use(passport.session());
